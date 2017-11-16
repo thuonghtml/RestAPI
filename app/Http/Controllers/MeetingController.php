@@ -20,6 +20,7 @@ class MeetingController extends Controller
     }
     public function index()
     {
+    	a
         $meetings = Meeting::all();
         foreach ($meetings as $meeting) {
             $meeting->view_meeting = [
@@ -84,6 +85,20 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
+    	try {
+            $meeting = Meeting::with('users')->where('id', $id)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['msg' => 'Could not find meeting with id = '.$id], 500);
+        }
+        $meeting->view_meetings = [
+            'href' => 'api/v1/meeting',
+            'method' => 'GET'
+        ];
+        $response = [
+            'msg' => 'Meeting information',
+            'meeting' => $meeting
+        ];
+        return response()->json($response, 200);
     }
     /**
      * Update the specified resource in storage.
