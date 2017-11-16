@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use JWTAuth;
 class AuthController extends Controller
 {
    public function store(Request $request)
