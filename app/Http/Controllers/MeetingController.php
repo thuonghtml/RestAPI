@@ -20,7 +20,18 @@ class MeetingController extends Controller
     }
     public function index()
     {
-        //
+        $meetings = Meeting::all();
+        foreach ($meetings as $meeting) {
+            $meeting->view_meeting = [
+                'href' => 'api/v1/meeting/' . $meeting->id,
+                'method' => 'GET'
+            ];
+        }
+        $response = [
+            'msg' => 'List of all Meetings',
+            'meetings' => $meetings
+        ];
+        return response()->json($response, 200);
     }
     /**
      * Store a newly created resource in storage.
