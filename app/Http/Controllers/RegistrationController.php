@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meeting;
-use App\Use;
+use App\User;
 use JWTAuth;
 class RegistrationController extends Controller
 {
