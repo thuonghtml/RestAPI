@@ -20,7 +20,6 @@ class MeetingController extends Controller
     }
     public function index()
     {
-    	a
         $meetings = Meeting::all();
         foreach ($meetings as $meeting) {
             $meeting->view_meeting = [
